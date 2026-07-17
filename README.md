@@ -9,6 +9,26 @@
 [![Three.js](https://img.shields.io/badge/three.js-r160-orange)](package.json)
 [![Vite](https://img.shields.io/badge/vite-5.0-646cff)](package.json)
 
+**🌐 [Live Demo](https://aether-os.dev)** | **📖 [Documentation](public/docs/API.html)**
+
+---
+
+## 🚀 Quick Start
+
+```bash
+# Clone repository
+git clone https://github.com/antono4/Aether-OS.git
+cd Aether-OS/spatial-canvas
+
+# Install dependencies
+npm install
+
+# Start development
+npm run dev
+
+# Open http://localhost:5173
+```
+
 ---
 
 ## 🎯 Overview

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security | Aether OS</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg-primary: #0a0a0f; --bg-secondary: #12121a; --text-primary: #fff; --text-secondary: #a0a0b0; --accent-cyan: #00f5ff; --accent-purple: #8b5cf6; --accent-red: #ff4444; --glass-bg: rgba(255,255,255,0.03); --glass-border: rgba(255,255,255,0.08); --gradient-primary: linear-gradient(135deg, #00f5ff 0%, #8b5cf6 50%, #ff00ff 100%); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; }
+    .nav { position: fixed; top: 0; left: 0; right: 0; padding: 1rem 2rem; background: rgba(10,10,15,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); z-index: 100; display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 0.75rem; font-weight: 700; font-size: 1.2rem; color: var(--text-primary); text-decoration: none; }
+    .logo-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; }
+    .back-link { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; }
+    .container { max-width: 900px; margin: 0 auto; padding: 8rem 2rem 4rem; }
+    .hero { text-align: center; margin-bottom: 4rem; }
+    .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
+    .hero h1 span { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { color: var(--text-secondary); font-size: 1.1rem; }
+    .section { margin-bottom: 3rem; }
+    .section h2 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--accent-cyan); }
+    .section p { color: var(--text-secondary); margin-bottom: 1rem; }
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0; }
+    .feature { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 12px; padding: 1.5rem; }
+    .feature h3 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--accent-purple); }
+    .feature p { font-size: 0.9rem; color: var(--text-secondary); }
+    .alert { background: rgba(255,68,68,0.1); border: 1px solid rgba(255,68,68,0.3); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+    .alert h3 { color: var(--accent-red); margin-bottom: 0.5rem; }
+    .alert p { color: var(--text-secondary); }
+    footer { text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 0.9rem; border-top: 1px solid var(--glass-border); margin-top: 4rem; }
+    footer a { color: var(--accent-cyan); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="logo"><div class="logo-icon">⬡</div><span>Aether OS</span></a>
+    <a href="/" class="back-link">← Back to Home</a>
+  </nav>
+  <div class="container">
+    <div class="hero">
+      <h1><span>Security</span> Policy</h1>
+      <p>Our commitment to keeping your data safe</p>
+    </div>
+
+    <div class="section">
+      <h2>Reporting Vulnerabilities</h2>
+      <p>We take security vulnerabilities seriously. If you discover a security issue, please report it responsibly:</p>
+      <div class="alert">
+        <h3>⚠️ Important</h3>
+        <p>Do NOT create public GitHub issues for security vulnerabilities. Email us at <strong>security@aether-os.dev</strong> instead.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Security Features</h2>
+      <div class="features">
+        <div class="feature">
+          <h3>🔒 Encryption</h3>
+          <p>AES-256-GCM encryption for sensitive data at rest</p>
+        </div>
+        <div class="feature">
+          <h3>🔑 Authentication</h3>
+          <p>OAuth2/OIDC support with JWT tokens and refresh</p>
+        </div>
+        <div class="feature">
+          <h3>🛡️ CORS & CSP</h3>
+          <p>Configurable cross-origin policies and content security</p>
+        </div>
+        <div class="feature">
+          <h3>📦 Sandboxing</h3>
+          <p>Plugin isolation in sandboxed iframes</p>
+        </div>
+        <div class="feature">
+          <h3>🧹 Sanitization</h3>
+          <p>Input sanitization for all user content</p>
+        </div>
+        <div class="feature">
+          <h3>🔍 Auditing</h3>
+          <p>Comprehensive action logging and audit trails</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Scope</h2>
+      <p>We consider the following as in-scope:</p>
+      <ul style="color: var(--text-secondary); margin-left: 1.5rem;">
+        <li>Data encryption issues</li>
+        <li>Authentication/authorization flaws</li>
+        <li>Cross-site scripting (XSS)</li>
+        <li>Cross-site request forgery (CSRF)</li>
+        <li>Server-side code execution</li>
+        <li>Sensitive data exposure</li>
+        <li>Dependency vulnerabilities</li>
+      </ul>
+    </div>
+  </div>
+  <footer><p>Built with ❤️ by the <a href="https://github.com/antono4/Aether-OS">Aether OS Team</a></p></footer>
+</body>
+</html>

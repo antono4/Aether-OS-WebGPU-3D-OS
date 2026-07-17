@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Installation | Aether OS</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg-primary: #0a0a0f; --bg-secondary: #12121a; --text-primary: #fff; --text-secondary: #a0a0b0; --accent-cyan: #00f5ff; --accent-purple: #8b5cf6; --accent-green: #00ff88; --glass-bg: rgba(255,255,255,0.03); --glass-border: rgba(255,255,255,0.08); --gradient-primary: linear-gradient(135deg, #00f5ff 0%, #8b5cf6 50%, #ff00ff 100%); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; }
+    .nav { position: fixed; top: 0; left: 0; right: 0; padding: 1rem 2rem; background: rgba(10,10,15,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); z-index: 100; display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 0.75rem; font-weight: 700; font-size: 1.2rem; color: var(--text-primary); text-decoration: none; }
+    .logo-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; }
+    .back-link { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; }
+    .container { max-width: 900px; margin: 0 auto; padding: 8rem 2rem 4rem; }
+    .hero { text-align: center; margin-bottom: 4rem; }
+    .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
+    .hero h1 span { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { color: var(--text-secondary); font-size: 1.1rem; }
+    .section { margin-bottom: 3rem; }
+    .section h2 { font-size: 1.5rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .section h2 .icon { font-size: 1.5rem; }
+    .section p { color: var(--text-secondary); margin-bottom: 1rem; }
+    .code-block { background: var(--bg-secondary); border: 1px solid var(--glass-border); border-radius: 12px; padding: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; overflow-x: auto; margin: 1rem 0; }
+    .code-block .comment { color: var(--text-muted); }
+    .code-block .command { color: var(--accent-green); }
+    .code-block .string { color: var(--accent-cyan); }
+    .req-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0; }
+    .req-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 12px; padding: 1.5rem; text-align: center; }
+    .req-card .version { font-size: 1.5rem; font-weight: 700; color: var(--accent-cyan); }
+    .req-card .name { color: var(--text-secondary); font-size: 0.9rem; }
+    .cta { text-align: center; margin: 4rem 0; }
+    .cta .btn { display: inline-block; padding: 1rem 2rem; background: var(--gradient-primary); color: #000; font-weight: 600; border-radius: 8px; text-decoration: none; transition: transform 0.3s; }
+    .cta .btn:hover { transform: translateY(-2px); }
+    footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--glass-border); margin-top: 4rem; }
+    footer a { color: var(--accent-cyan); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="logo"><div class="logo-icon">⬡</div><span>Aether OS</span></a>
+    <a href="/" class="back-link">← Back to Home</a>
+  </nav>
+  <div class="container">
+    <div class="hero">
+      <h1><span>Installation</span> Guide</h1>
+      <p>Get started with Aether OS in minutes</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="icon">📋</span> Prerequisites</h2>
+      <p>Before installing Aether OS, ensure you have the following:</p>
+      <div class="req-grid">
+        <div class="req-card"><div class="version">18+</div><div class="name">Node.js</div></div>
+        <div class="req-card"><div class="version">9+</div><div class="name">npm</div></div>
+        <div class="req-card"><div class="version">2.0+</div><div class="name">Git</div></div>
+        <div class="req-card"><div class="version">Chrome 94+</div><div class="name">Browser</div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2><span class="icon">🚀</span> Quick Start (Web)</h2>
+      <div class="code-block">
+        <span class="comment"># Clone the repository</span><br>
+        <span class="command">git clone</span> <span class="string">https://github.com/antono4/Aether-OS.git</span><br>
+        <span class="command">cd</span> Aether-OS/spatial-canvas<br><br>
+        <span class="comment"># Install dependencies</span><br>
+        <span class="command">npm install</span><br><br>
+        <span class="comment"># Start development server</span><br>
+        <span class="command">npm run dev</span>
+      </div>
+      <p>Open <strong>http://localhost:5173</strong> in your browser.</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="icon">🐳</span> Docker (Production)</h2>
+      <div class="code-block">
+        <span class="comment"># Build and run with Docker</span><br>
+        <span class="command">docker build</span> <span class="string">-t aether-os .</span><br>
+        <span class="command">docker run</span> <span class="string">-p 5173:80 aether-os</span>
+      </div>
+      <p>Or use docker-compose:</p>
+      <div class="code-block">
+        <span class="command">docker-compose up</span> <span class="string">-d</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2><span class="icon">🤖</span> AI Setup (Optional)</h2>
+      <p>For AI features, create a <strong>.env</strong> file:</p>
+      <div class="code-block">
+        <span class="string">CLAUDE_API_KEY</span>=<span class="command">your_claude_key</span><br>
+        <span class="string">DEFAULT_AI_PROVIDER</span>=<span class="command">claude</span>
+      </div>
+      <p>Or use local Ollama (no API key needed):</p>
+      <div class="code-block">
+        <span class="command">ollama pull</span> <span class="string">llama3</span><br>
+        <span class="command">ollama serve</span>
+      </div>
+    </div>
+
+    <div class="cta">
+      <a href="./spatial-canvas" class="btn">Launch Aether OS →</a>
+    </div>
+  </div>
+  <footer><p>Built with ❤️ by the <a href="https://github.com/antono4/Aether-OS">Aether OS Team</a></p></footer>
+</body>
+</html>

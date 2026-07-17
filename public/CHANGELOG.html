@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changelog | Aether OS</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg-primary: #0a0a0f; --bg-secondary: #12121a; --text-primary: #fff; --text-secondary: #a0a0b0; --text-muted: #606070; --accent-cyan: #00f5ff; --accent-purple: #8b5cf6; --accent-green: #00ff88; --accent-magenta: #ff00ff; --glass-bg: rgba(255,255,255,0.03); --glass-border: rgba(255,255,255,0.08); --gradient-primary: linear-gradient(135deg, #00f5ff 0%, #8b5cf6 50%, #ff00ff 100%); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; }
+    .nav { position: fixed; top: 0; left: 0; right: 0; padding: 1rem 2rem; background: rgba(10,10,15,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); z-index: 100; display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 0.75rem; font-weight: 700; font-size: 1.2rem; color: var(--text-primary); text-decoration: none; }
+    .logo-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; }
+    .back-link { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; }
+    .container { max-width: 900px; margin: 0 auto; padding: 8rem 2rem 4rem; }
+    .hero { text-align: center; margin-bottom: 4rem; }
+    .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
+    .hero h1 span { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .version { margin-bottom: 3rem; }
+    .version-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .version-tag { padding: 0.5rem 1rem; background: var(--gradient-primary); border-radius: 100px; font-weight: 600; font-size: 0.9rem; color: #000; }
+    .version-date { color: var(--text-muted); font-size: 0.9rem; }
+    .version h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+    .feature-list { list-style: none; }
+    .feature-list li { padding: 0.75rem 0; border-bottom: 1px solid var(--glass-border); display: flex; align-items: flex-start; gap: 0.75rem; color: var(--text-secondary); }
+    .feature-list li:last-child { border-bottom: none; }
+    .feature-list .icon { font-size: 1.2rem; }
+    .feature-list .type { font-weight: 600; font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 4px; }
+    .type-added { background: rgba(0,255,136,0.2); color: var(--accent-green); }
+    .type-changed { background: rgba(0,245,255,0.2); color: var(--accent-cyan); }
+    .type-fixed { background: rgba(139,92,246,0.2); color: var(--accent-purple); }
+    footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--glass-border); margin-top: 4rem; }
+    footer a { color: var(--accent-cyan); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="logo"><div class="logo-icon">⬡</div><span>Aether OS</span></a>
+    <a href="/" class="back-link">← Back to Home</a>
+  </nav>
+  <div class="container">
+    <div class="hero">
+      <h1><span>Changelog</span></h1>
+      <p>All notable changes to Aether OS</p>
+    </div>
+
+    <div class="version">
+      <div class="version-header">
+        <span class="version-tag">v1.0.0</span>
+        <span class="version-date">January 17, 2024</span>
+      </div>
+      <h2>Initial Release - Complete Platform</h2>
+      <ul class="feature-list">
+        <li><span class="icon">🌐</span><span class="type type-added">Added</span> Infinite 3D Spatial Canvas with Three.js</li>
+        <li><span class="icon">🤖</span><span class="type type-added">Added</span> AI Orchestrator with Claude, GPT, Gemini, Ollama</li>
+        <li><span class="icon">🧠</span><span class="type type-added">Added</span> Associative Memory Graph with vector embeddings</li>
+        <li><span class="icon">✨</span><span class="type type-added">Added</span> Zero-App Architecture (Generative Micro-Tools)</li>
+        <li><span class="icon">🎨</span><span class="type type-added">Added</span> Dark Glassmorphism UI with physics animations</li>
+        <li><span class="icon">🔐</span><span class="type type-added">Added</span> Enterprise security (AES-256, OAuth/SSO, Teams)</li>
+        <li><span class="icon">⚡</span><span class="type type-added">Added</span> Performance optimizations (WebWorkers, WASM, LOD)</li>
+        <li><span class="icon">🎯</span><span class="type type-added">Added</span> Advanced AI (Multi-modal, Fine-tuning, Agents)</li>
+        <li><span class="icon">🛒</span><span class="type type-added">Added</span> Marketplace ecosystem with payments</li>
+        <li><span class="icon">📱</span><span class="type type-added">Added</span> Cross-platform (Web, Desktop, Mobile)</li>
+      </ul>
+    </div>
+
+    <div class="version">
+      <div class="version-header">
+        <span class="version-tag">v0.1.0</span>
+        <span class="version-date">January 1, 2024</span>
+      </div>
+      <h2>Prototype</h2>
+      <ul class="feature-list">
+        <li><span class="icon">🚀</span><span class="type type-added">Added</span> Initial prototype with basic 3D canvas</li>
+        <li><span class="icon">📦</span><span class="type type-added">Added</span> Simple node creation system</li>
+      </ul>
+    </div>
+  </div>
+  <footer><p>Built with ❤️ by the <a href="https://github.com/antono4/Aether-OS">Aether OS Team</a></p></footer>
+</body>
+</html>

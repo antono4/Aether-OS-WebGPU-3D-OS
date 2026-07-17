@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contributing | Aether OS</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg-primary: #0a0a0f; --bg-secondary: #12121a; --text-primary: #fff; --text-secondary: #a0a0b0; --accent-cyan: #00f5ff; --accent-purple: #8b5cf6; --glass-bg: rgba(255,255,255,0.03); --glass-border: rgba(255,255,255,0.08); --gradient-primary: linear-gradient(135deg, #00f5ff 0%, #8b5cf6 50%, #ff00ff 100%); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; }
+    .nav { position: fixed; top: 0; left: 0; right: 0; padding: 1rem 2rem; background: rgba(10,10,15,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); z-index: 100; display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 0.75rem; font-weight: 700; font-size: 1.2rem; color: var(--text-primary); text-decoration: none; }
+    .logo-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; }
+    .back-link { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; }
+    .container { max-width: 900px; margin: 0 auto; padding: 8rem 2rem 4rem; }
+    .hero { text-align: center; margin-bottom: 4rem; }
+    .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
+    .hero h1 span { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { color: var(--text-secondary); font-size: 1.1rem; }
+    .section { margin-bottom: 3rem; }
+    .section h2 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--accent-cyan); }
+    .section p { color: var(--text-secondary); margin-bottom: 1rem; }
+    .steps { counter-reset: step; }
+    .step { position: relative; padding-left: 3rem; margin-bottom: 2rem; }
+    .step::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: 0; width: 2rem; height: 2rem; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #000; }
+    .step h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .step p { font-size: 0.95rem; }
+    .code-block { background: var(--bg-secondary); border: 1px solid var(--glass-border); border-radius: 12px; padding: 1.5rem; font-family: monospace; font-size: 0.9rem; overflow-x: auto; margin: 1rem 0; color: var(--accent-cyan); }
+    .types { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0; }
+    .type-badge { padding: 0.5rem 1rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 100px; font-size: 0.85rem; }
+    .cta { text-align: center; margin: 4rem 0; }
+    .cta .btn { display: inline-block; padding: 1rem 2rem; background: var(--gradient-primary); color: #000; font-weight: 600; border-radius: 8px; text-decoration: none; }
+    footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--glass-border); margin-top: 4rem; }
+    footer a { color: var(--accent-cyan); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="logo"><div class="logo-icon">⬡</div><span>Aether OS</span></a>
+    <a href="/" class="back-link">← Back to Home</a>
+  </nav>
+  <div class="container">
+    <div class="hero">
+      <h1><span>Contributing</span> to Aether OS</h1>
+      <p>Join our open source community and help shape the future of spatial computing</p>
+    </div>
+
+    <div class="section">
+      <h2>Getting Started</h2>
+      <p>We're excited that you want to contribute! Here's how to get started:</p>
+      <div class="steps">
+        <div class="step">
+          <h3>Fork the Repository</h3>
+          <p>Create your own copy of the Aether OS repository on GitHub.</p>
+        </div>
+        <div class="step">
+          <h3>Clone Your Fork</h3>
+          <div class="code-block">git clone https://github.com/YOUR_USERNAME/Aether-OS.git</div>
+        </div>
+        <div class="step">
+          <h3>Create a Branch</h3>
+          <div class="code-block">git checkout -b feature/your-feature-name</div>
+        </div>
+        <div class="step">
+          <h3>Make Your Changes</h3>
+          <p>Write code, add tests, update documentation as needed.</p>
+        </div>
+        <div class="step">
+          <h3>Submit a Pull Request</h3>
+          <p>Push your changes and open a PR to the main repository.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Commit Message Format</h2>
+      <p>We follow conventional commits:</p>
+      <div class="types">
+        <span class="type-badge"><strong>feat:</strong> New feature</span>
+        <span class="type-badge"><strong>fix:</strong> Bug fix</span>
+        <span class="type-badge"><strong>docs:</strong> Documentation</span>
+        <span class="type-badge"><strong>refactor:</strong> Code refactoring</span>
+        <span class="type-badge"><strong>test:</strong> Adding tests</span>
+      </div>
+      <div class="code-block">feat(core): add new physics simulation</div>
+    </div>
+
+    <div class="section">
+      <h2>Code Standards</h2>
+      <p>We maintain high code quality through:</p>
+      <ul style="color: var(--text-secondary); margin-left: 1.5rem;">
+        <li>TypeScript for type safety</li>
+        <li>ESLint for code linting</li>
+        <li>Prettier for consistent formatting</li>
+        <li>Vitest for testing</li>
+      </ul>
+    </div>
+
+    <div class="cta">
+      <a href="https://github.com/antono4/Aether-OS" class="btn">Contribute on GitHub →</a>
+    </div>
+  </div>
+  <footer><p>Built with ❤️ by the <a href="https://github.com/antono4/Aether-OS">Aether OS Team</a></p></footer>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Architecture | Aether OS</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg-primary: #0a0a0f; --bg-secondary: #12121a; --text-primary: #fff; --text-secondary: #a0a0b0; --text-muted: #606070; --accent-cyan: #00f5ff; --accent-purple: #8b5cf6; --accent-magenta: #ff00ff; --glass-bg: rgba(255,255,255,0.03); --glass-border: rgba(255,255,255,0.08); --gradient-primary: linear-gradient(135deg, #00f5ff 0%, #8b5cf6 50%, #ff00ff 100%); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; }
+    .nav { position: fixed; top: 0; left: 0; right: 0; padding: 1rem 2rem; background: rgba(10,10,15,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); z-index: 100; display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 0.75rem; font-weight: 700; font-size: 1.2rem; color: var(--text-primary); text-decoration: none; }
+    .logo-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; }
+    .back-link { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; }
+    .back-link:hover { color: var(--accent-cyan); }
+    .container { max-width: 900px; margin: 0 auto; padding: 8rem 2rem 4rem; }
+    .hero { text-align: center; margin-bottom: 4rem; }
+    .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
+    .hero h1 span { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { color: var(--text-secondary); font-size: 1.1rem; }
+    .content h2 { font-size: 1.75rem; margin: 3rem 0 1rem; color: var(--text-primary); }
+    .content h3 { font-size: 1.25rem; margin: 2rem 0 0.75rem; color: var(--accent-cyan); }
+    .content p { color: var(--text-secondary); margin-bottom: 1rem; }
+    .diagram { background: var(--bg-secondary); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; margin: 2rem 0; overflow-x: auto; }
+    .diagram pre { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--accent-cyan); white-space: pre; }
+    .layer { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem; justify-content: center; }
+    .layer-item { padding: 0.75rem 1rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 8px; font-size: 0.85rem; }
+    .layer-item.highlight { border-color: var(--accent-purple); background: rgba(139,92,246,0.1); }
+    .layer-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.5rem; text-align: center; }
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0; }
+    .feature { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 12px; padding: 1.5rem; }
+    .feature h4 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--accent-cyan); }
+    .feature p { font-size: 0.9rem; color: var(--text-secondary); }
+    footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--glass-border); margin-top: 4rem; }
+    footer a { color: var(--accent-cyan); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="logo"><div class="logo-icon">⬡</div><span>Aether OS</span></a>
+    <a href="/" class="back-link">← Back to Home</a>
+  </nav>
+  <div class="container">
+    <div class="hero">
+      <h1>System <span>Architecture</span></h1>
+      <p>Next-generation spatial computing built on modern web technologies</p>
+    </div>
+    <div class="content">
+      <h2>Overview</h2>
+      <p>Aether OS is a next-generation spatial operating system built on web-native technologies. It reimagines computing by replacing traditional WIMP interfaces with an immersive 3D spatial canvas where data exists as interconnected nodes.</p>
+      
+      <h2>System Layers</h2>
+      <div class="diagram">
+        <div style="margin-bottom: 2rem;">
+          <div class="layer-label">Presentation Layer</div>
+          <div class="layer">
+            <div class="layer-item highlight">Three.js / WebGPU</div>
+            <div class="layer-item">CSS3 Glassmorphism</div>
+            <div class="layer-item">TypeScript</div>
+          </div>
+        </div>
+        <div style="margin-bottom: 2rem;">
+          <div class="layer-label">Core Engine</div>
+          <div class="layer">
+            <div class="layer-item highlight">AI Orchestrator</div>
+            <div class="layer-item">Physics Engine</div>
+            <div class="layer-item">Graph Database</div>
+            <div class="layer-item">Plugin System</div>
+          </div>
+        </div>
+        <div>
+          <div class="layer-label">Data Layer</div>
+          <div class="layer">
+            <div class="layer-item highlight">IndexedDB / SQLite</div>
+            <div class="layer-item">Vector Embeddings</div>
+            <div class="layer-item">Real-time Sync</div>
+          </div>
+        </div>
+      </div>
+
+      <h2>Core Principles</h2>
+      <div class="features">
+        <div class="feature">
+          <h4>Zero-App Architecture</h4>
+          <p>No more app switching. Every piece of functionality is a micro-tool, assembled on-demand.</p>
+        </div>
+        <div class="feature">
+          <h4>Associative Memory</h4>
+          <p>Data stored as interconnected nodes with semantic relationships for instant retrieval.</p>
+        </div>
+        <div class="feature">
+          <h4>Physics-Based UI</h4>
+          <p>Nodes float, connect, and interact through physics simulation for natural navigation.</p>
+        </div>
+        <div class="feature">
+          <h4>AI Orchestration</h4>
+          <p>Natural language commands dynamically assemble UI components based on intent.</p>
+        </div>
+      </div>
+
+      <h2>Technology Stack</h2>
+      <p>Aether OS leverages cutting-edge technologies across all layers:</p>
+      <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-bottom: 1rem;">
+        <li><strong style="color: var(--text-primary);">3D Rendering:</strong> Three.js with WebGPU acceleration</li>
+        <li><strong style="color: var(--text-primary);">AI:</strong> Claude API, Ollama for local inference</li>
+        <li><strong style="color: var(--text-primary);">Storage:</strong> IndexedDB for browser, SQLite for desktop</li>
+        <li><strong style="color: var(--text-primary);">Desktop:</strong> Tauri (Rust) for native performance</li>
+        <li><strong style="color: var(--text-primary);">Mobile:</strong> Capacitor for cross-platform deployment</li>
+      </ul>
+
+      <h2>Data Flow</h2>
+      <div class="diagram">
+        <pre>User Input → Event Bus → AI Orchestrator → Component Library
+                                ↓
+                         Memory Graph → IndexedDB → Vector DB
+                                ↓
+                         Three.js → 3D Canvas</pre>
+      </div>
+    </div>
+  </div>
+  <footer><p>Built with ❤️ by the <a href="https://github.com/antono4/Aether-OS">Aether OS Team</a></p></footer>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Documentation | Aether OS</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg-primary: #0a0a0f; --bg-secondary: #12121a; --bg-tertiary: #1a1a25; --text-primary: #ffffff; --text-secondary: #a0a0b0; --text-muted: #606070; --accent-cyan: #00f5ff; --accent-purple: #8b5cf6; --accent-magenta: #ff00ff; --glass-bg: rgba(255,255,255,0.03); --glass-border: rgba(255,255,255,0.08); --gradient-primary: linear-gradient(135deg, #00f5ff 0%, #8b5cf6 50%, #ff00ff 100%); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; }
+    .nav { position: fixed; top: 0; left: 0; right: 0; padding: 1rem 2rem; background: rgba(10,10,15,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); z-index: 100; display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 0.75rem; font-weight: 700; font-size: 1.2rem; color: var(--text-primary); text-decoration: none; }
+    .logo-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; }
+    .back-link { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; }
+    .back-link:hover { color: var(--accent-cyan); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 8rem 2rem 4rem; }
+    .hero { text-align: center; margin-bottom: 4rem; }
+    .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
+    .hero h1 span { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+    .api-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; }
+    .api-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; transition: all 0.3s; }
+    .api-card:hover { border-color: var(--accent-cyan); transform: translateY(-5px); }
+    .api-card h3 { font-size: 1.25rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+    .api-card p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1rem; }
+    .code-block { background: var(--bg-secondary); border-radius: 8px; padding: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; overflow-x: auto; color: var(--accent-cyan); }
+    .method { display: inline-block; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+    .method.get { background: rgba(0,245,255,0.2); color: var(--accent-cyan); }
+    .method.post { background: rgba(0,255,136,0.2); color: #00ff88; }
+    .method.put { background: rgba(255,170,0,0.2); color: #ffaa00; }
+    .method.delete { background: rgba(255,0,255,0.2); color: var(--accent-magenta); }
+    h2 { font-size: 1.5rem; margin: 3rem 0 1rem; }
+    .code-large { background: var(--bg-secondary); border-radius: 12px; padding: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; overflow-x: auto; color: var(--text-primary); white-space: pre-wrap; }
+    footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--glass-border); margin-top: 4rem; }
+    footer a { color: var(--accent-cyan); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="logo"><div class="logo-icon">⬡</div><span>Aether OS</span></a>
+    <a href="/" class="back-link">← Back to Home</a>
+  </nav>
+  <div class="container">
+    <div class="hero">
+      <h1>API <span>Documentation</span></h1>
+      <p>Complete API reference for building with Aether OS</p>
+    </div>
+    <div class="api-grid">
+      <div class="api-card">
+        <h3><span class="method get">GET</span> Memory Nodes</h3>
+        <p>Retrieve nodes from the associative memory graph</p>
+        <div class="code-block">memoryGraph.getNode(id: string): MemoryNode</div>
+      </div>
+      <div class="api-card">
+        <h3><span class="method post">POST</span> Create Node</h3>
+        <p>Create a new node in the memory graph</p>
+        <div class="code-block">memoryGraph.createNode(config: NodeConfig): MemoryNode</div>
+      </div>
+      <div class="api-card">
+        <h3><span class="method put">PUT</span> Update Node</h3>
+        <p>Update an existing memory node</p>
+        <div class="code-block">memoryGraph.updateNode(id: string, data: Partial&lt;NodeData&gt;)</div>
+      </div>
+      <div class="api-card">
+        <h3><span class="method delete">DELETE</span> Delete Node</h3>
+        <p>Remove a node from the graph</p>
+        <div class="code-block">memoryGraph.deleteNode(id: string): void</div>
+      </div>
+      <div class="api-card">
+        <h3><span class="method get">GET</span> Search</h3>
+        <p>Semantic search across all nodes</p>
+        <div class="code-block">memoryGraph.searchNodes(query: string, limit?: number)</div>
+      </div>
+      <div class="api-card">
+        <h3><span class="method post">POST</span> AI Complete</h3>
+        <p>Generate AI completion</p>
+        <div class="code-block">ai.complete(prompt: string, options?: AIOptions)</div>
+      </div>
+      <div class="api-card">
+        <h3><span class="method post">POST</span> Event Emit</h3>
+        <p>Emit custom events through the event bus</p>
+        <div class="code-block">eventBus.emit(event: string, data?: any): void</div>
+      </div>
+      <div class="api-card">
+        <h3><span class="method get">GET</span> Subscribe</h3>
+        <p>Subscribe to event bus events</p>
+        <div class="code-block">eventBus.on(event: string, callback: Function): Unsubscribe</div>
+      </div>
+    </div>
+    <h2>Quick Start Example</h2>
+    <div class="code-large">import { AetherOS } from './main';
+
+const aether = new AetherOS();
+
+// Create a memory node
+const node = aether.memoryGraph.createNode({
+  type: 'text',
+  content: 'My brilliant idea',
+  tags: ['creative', 'project'],
+  importance: 0.9
+});
+
+// Search semantically
+const results = await aether.memoryGraph.searchNodes('ideas about projects');
+
+// Subscribe to events
+aether.eventBus.on('node:created', (data) => {
+  console.log('Node created:', data.id);
+});</div>
+  </div>
+  <footer><p>Built with ❤️ by the <a href="https://github.com/antono4/Aether-OS">Aether OS Team</a></p></footer>
+</body>
+</html>
