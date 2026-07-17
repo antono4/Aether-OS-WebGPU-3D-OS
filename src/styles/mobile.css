@@ -1,0 +1,224 @@
+/**
+ * Aether OS - Mobile Support Styles
+ * Responsive design for mobile devices
+ */
+
+/* Mobile Breakpoints */
+:root {
+  --mobile-breakpoint: 768px;
+  --tablet-breakpoint: 1024px;
+}
+
+/* Base Mobile Styles */
+@media (max-width: 768px) {
+  /* Command Bar - Full width on mobile */
+  .command-bar {
+    width: 95%;
+    bottom: 16px;
+    left: 2.5%;
+    transform: none;
+    padding: 8px;
+  }
+
+  .command-bar::before {
+    font-size: 16px;
+    padding-left: 8px;
+  }
+
+  .command-input {
+    font-size: 14px;
+    padding: 12px 8px;
+  }
+
+  .command-submit {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  /* Memory Panel - Bottom sheet on mobile */
+  .memory-panel {
+    position: fixed;
+    top: auto;
+    bottom: 80px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+    max-height: 200px;
+    transform: translateY(0);
+  }
+
+  /* Liquid Node Content */
+  .liquid-node-content {
+    width: 95%;
+    max-height: 70vh;
+    max-width: none;
+  }
+
+  /* Toast Notifications */
+  .toast-container {
+    right: 8px;
+    left: 8px;
+    bottom: 100px;
+  }
+
+  .toast {
+    min-width: auto;
+    width: 100%;
+  }
+
+  /* Help Tooltip */
+  .help-tooltip {
+    display: none;
+  }
+
+  /* Collaboration Panel */
+  .collab-panel {
+    width: 100%;
+    max-height: 50vh;
+    border-radius: 16px 16px 0 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+/* Touch Interactions */
+@media (hover: none) and (pointer: coarse) {
+  /* Disable hover effects on touch devices */
+  .command-submit:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Larger touch targets */
+  .tool-close {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+
+  .node-close {
+    width: 36px;
+    height: 36px;
+    font-size: 24px;
+  }
+
+  /* Touch feedback */
+  button:active {
+    opacity: 0.8;
+  }
+}
+
+/* Tablet Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .command-bar {
+    width: 80%;
+  }
+
+  .memory-panel {
+    width: 240px;
+  }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .command-bar {
+    bottom: 8px;
+  }
+
+  .memory-panel {
+    max-height: 150px;
+  }
+}
+
+/* Safe area insets for notched devices */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .command-bar {
+    padding-bottom: calc(8px + env(safe-area-inset-bottom));
+  }
+
+  .toast-container {
+    padding-bottom: calc(8px + env(safe-area-inset-bottom));
+  }
+}
+
+/* High DPI Mobile */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .command-bar,
+  .memory-panel,
+  .liquid-node-content {
+    backdrop-filter: blur(15px);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark Mode (for devices that prefer light mode by default) */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg-primary: #f5f5f7;
+    --color-bg-secondary: #ffffff;
+    --color-text-primary: #1d1d1f;
+    --color-text-secondary: #6e6e73;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .command-bar,
+  .memory-panel,
+  .liquid-node-content,
+  .toast-container,
+  .help-tooltip {
+    display: none !important;
+  }
+}
+
+/* Mobile Menu / Gesture Support */
+.mobile-gesture-hint {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-gesture-hint {
+    display: flex;
+    position: fixed;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    z-index: 999;
+    animation: fadeOut 5s forwards;
+  }
+
+  @keyframes fadeOut {
+    0%, 70% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+}
+
+/* Touch-friendly scrollbars */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+  }
+}

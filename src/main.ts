@@ -12,9 +12,12 @@ import { PersistentStorage } from './storage/PersistentStorage';
 import { WebGPURenderer } from './renderer/WebGPURenderer';
 import { VoiceInput, VoiceOutput } from './voice/VoiceInput';
 import { CollaborationManager } from './collaboration/Collaboration';
+import { CollaborationUI } from './collaboration/CollaborationUI';
 import { PluginSystem } from './plugins/PluginSystem';
 import { ShaderPlayground } from './shader/ShaderPlayground';
+import { AgentDelegation } from './agents/AgentDelegation';
 import './styles/main.css';
+import './styles/mobile.css';
 
 class AetherOS {
   // Phase 2 & 3 Modules
@@ -24,8 +27,10 @@ class AetherOS {
   voiceInput: VoiceInput | null = null;
   voiceOutput: VoiceOutput | null = null;
   collaboration: CollaborationManager | null = null;
+  collaborationUI: CollaborationUI | null = null;
   plugins: PluginSystem;
   shaderPlayground: ShaderPlayground | null = null;
+  agentDelegation: AgentDelegation | null = null;
   private scene: SpatialScene;
   private eventBus: EventBus;
   private aiOrchestrator: AIOrchestrator;
@@ -59,9 +64,45 @@ class AetherOS {
     const container = document.getElementById('canvas-container')!;
     this.renderer = new WebGPURenderer(container);
 
+    // Phase 2: Initialize collaboration
+    this.collaboration = new CollaborationManager(this.eventBus);
+    this.collaborationUI = new CollaborationUI(this.collaboration, this.eventBus);
+
+    // Phase 3: Initialize agent delegation
+    this.agentDelegation = new AgentDelegation(this.eventBus, this.aiIntegration);
+
+    // Phase 3: Initialize shader playground
+    this.initShaderPlayground();
+
     this.setupUI();
     this.setupEventListeners();
+    this.setupVoiceControls();
+    this.setupCollaborationPanel();
+    this.setupAgentPanel();
     this.start();
+  }
+
+  private initShaderPlayground(): void {
+    // Shader playground will be initialized when opened
+    console.log('🎨 Shader Playground ready');
+  }
+
+  private setupVoiceControls(): void {
+    // Voice input is available globally
+    console.log('🎤 Voice Input ready');
+  }
+
+  private setupCollaborationPanel(): void {
+    // Collaboration panel will be rendered on demand
+    console.log('👥 Collaboration ready');
+  }
+
+  private setupAgentPanel(): void {
+    // Agent delegation is running
+    this.eventBus.on('agent:task-completed', (data: any) => {
+      this.showToast('success', 'Task Completed', data.task.title);
+    });
+    console.log('🤖 Agent Delegation ready');
   }
 
   private setupUI() {
@@ -84,6 +125,10 @@ class AetherOS {
     commandBar.innerHTML = `
       <input type="text" class="command-input" placeholder="Enter command or ask AI..." />
       <button class="command-submit">Execute</button>
+      <button class="voice-toggle" title="Voice Input">🎤</button>
+      <button class="collab-toggle" title="Collaboration">👥</button>
+      <button class="shader-toggle" title="Shader Playground">🎨</button>
+      <button class="agents-toggle" title="AI Agents">🤖</button>
     `;
     
     document.body.appendChild(commandBar);
@@ -126,6 +171,27 @@ class AetherOS {
     this.commandInput?.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') handleCommand();
     });
+
+    // Voice toggle
+    const voiceBtn = commandBar.querySelector('.voice-toggle');
+    voiceBtn?.addEventListener('click', () => {
+      if (this.voiceInput) {
+        const isListening = this.voiceInput.toggle();
+        (voiceBtn as HTMLElement).style.color = isListening ? '#00ff88' : '';
+      }
+    });
+
+    // Collaboration toggle
+    const collabBtn = commandBar.querySelector('.collab-toggle');
+    collabBtn?.addEventListener('click', () => this.toggleCollaborationPanel());
+
+    // Shader toggle
+    const shaderBtn = commandBar.querySelector('.shader-toggle');
+    shaderBtn?.addEventListener('click', () => this.toggleShaderPlayground());
+
+    // Agents toggle
+    const agentsBtn = commandBar.querySelector('.agents-toggle');
+    agentsBtn?.addEventListener('click', () => this.toggleAgentPanel());
   }
 
   private createMemoryPanel() {
@@ -367,6 +433,117 @@ class AetherOS {
 
     vizPanel.querySelector('.node-close')?.addEventListener('click', () => vizPanel.remove());
     document.body.appendChild(vizPanel);
+  }
+
+  private toggleCollaborationPanel(): void {
+    let panel = document.querySelector('.collab-panel');
+    
+    if (panel) {
+      panel.remove();
+    } else {
+      const panelContainer = document.createElement('div');
+      panelContainer.className = 'collab-panel-container';
+      panelContainer.style.cssText = 'position: fixed; right: 20px; bottom: 100px; z-index: 1000;';
+      document.body.appendChild(panelContainer);
+      this.collaborationUI?.render(panelContainer);
+    }
+  }
+
+  private shaderPanel: HTMLElement | null = null;
+
+  private toggleShaderPlayground(): void {
+    if (this.shaderPanel) {
+      this.shaderPanel.remove();
+      this.shaderPanel = null;
+    } else {
+      this.shaderPanel = document.createElement('div');
+      this.shaderPanel.className = 'shader-panel';
+      this.shaderPanel.style.cssText = `
+        position: fixed;
+        left: 20px;
+        top: 20px;
+        width: calc(100% - 40px);
+        height: calc(100% - 140px);
+        max-width: 900px;
+        max-height: 600px;
+        z-index: 1000;
+        border-radius: 16px;
+        overflow: hidden;
+      `;
+      
+      const playground = new ShaderPlayground(this.shaderPanel);
+      // Add preview mesh to scene if available
+      const mesh = playground.getPreviewMesh();
+      if (mesh) {
+        this.scene.addToScene(mesh);
+      }
+      
+      document.body.appendChild(this.shaderPanel);
+    }
+  }
+
+  private agentPanel: HTMLElement | null = null;
+
+  private toggleAgentPanel(): void {
+    if (this.agentPanel) {
+      this.agentPanel.remove();
+      this.agentPanel = null;
+      return;
+    }
+
+    this.agentPanel = document.createElement('div');
+    this.agentPanel.className = 'agent-panel glass-panel';
+    this.agentPanel.style.cssText = `
+      position: fixed;
+      left: 20px;
+      top: 20px;
+      width: 320px;
+      max-height: 500px;
+      padding: 16px;
+      z-index: 1000;
+      overflow-y: auto;
+    `;
+
+    const agents = this.agentDelegation?.getAgents() || [];
+    const tasks = this.agentDelegation?.getTasks() || [];
+    const pendingTasks = tasks.filter(t => t.status === 'pending');
+
+    this.agentPanel.innerHTML = `
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <h3 style="margin: 0; color: #00d9ff;">🤖 AI Agents</h3>
+        <button class="agent-panel-close" style="background: none; border: none; color: #fff; cursor: pointer; font-size: 20px;">×</button>
+      </div>
+      
+      <div style="margin-bottom: 16px;">
+        <h4 style="margin: 0 0 8px; font-size: 12px; color: #a0a0b0; text-transform: uppercase;">Active Agents</h4>
+        ${agents.map(a => `
+          <div class="agent-item" style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.03); border-radius: 8px; margin-bottom: 4px;">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: ${a.status === 'idle' ? '#00ff88' : a.status === 'working' ? '#ffaa00' : '#ff6b6b'};"></span>
+            <span style="flex: 1; font-size: 13px;">${a.name}</span>
+            <span style="font-size: 11px; color: #a0a0b0;">${a.completedTasks} tasks</span>
+          </div>
+        `).join('')}
+      </div>
+      
+      <div>
+        <h4 style="margin: 0 0 8px; font-size: 12px; color: #a0a0b0; text-transform: uppercase;">Task Queue (${pendingTasks.length})</h4>
+        ${pendingTasks.length === 0 ? '<p style="font-size: 12px; color: #a0a0b0;">No pending tasks</p>' : 
+          pendingTasks.slice(0, 5).map(t => `
+            <div class="task-item" style="padding: 8px; background: rgba(255,255,255,0.03); border-radius: 8px; margin-bottom: 4px;">
+              <div style="font-size: 12px; font-weight: 600;">${t.title}</div>
+              <div style="font-size: 11px; color: #a0a0b0;">Priority: ${t.priority}</div>
+            </div>
+          `).join('')
+        }
+      </div>
+    `;
+
+    this.agentPanel.querySelector('.agent-panel-close')?.addEventListener('click', () => {
+      this.agentPanel?.remove();
+      this.agentPanel = null;
+    });
+
+    document.body.appendChild(this.agentPanel);
   }
 
   private start() {

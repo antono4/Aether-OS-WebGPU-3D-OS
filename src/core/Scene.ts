@@ -283,6 +283,15 @@ export class SpatialScene {
     this.createInitialNodes();
   }
 
+  // Public methods for adding/removing objects
+  addToScene(object: THREE.Object3D) {
+    this.scene.add(object);
+  }
+
+  removeFromScene(object: THREE.Object3D) {
+    this.scene.remove(object);
+  }
+
   private setupLighting() {
     // Ambient light
     const ambient = new THREE.AmbientLight(0x404060, 0.5);
