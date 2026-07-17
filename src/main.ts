@@ -6,10 +6,26 @@
 import { SpatialScene } from './core/Scene';
 import { EventBus, Events } from './core/EventBus';
 import { AIOrchestrator } from './intelligence/AIOrchestrator';
+import { AIIntegration } from './intelligence/AIIntegration';
 import { MemoryGraph } from './memory/MemoryGraph';
+import { PersistentStorage } from './storage/PersistentStorage';
+import { WebGPURenderer } from './renderer/WebGPURenderer';
+import { VoiceInput, VoiceOutput } from './voice/VoiceInput';
+import { CollaborationManager } from './collaboration/Collaboration';
+import { PluginSystem } from './plugins/PluginSystem';
+import { ShaderPlayground } from './shader/ShaderPlayground';
 import './styles/main.css';
 
 class AetherOS {
+  // Phase 2 & 3 Modules
+  aiIntegration: AIIntegration;
+  storage: PersistentStorage;
+  renderer: WebGPURenderer | null = null;
+  voiceInput: VoiceInput | null = null;
+  voiceOutput: VoiceOutput | null = null;
+  collaboration: CollaborationManager | null = null;
+  plugins: PluginSystem;
+  shaderPlayground: ShaderPlayground | null = null;
   private scene: SpatialScene;
   private eventBus: EventBus;
   private aiOrchestrator: AIOrchestrator;
@@ -29,6 +45,19 @@ class AetherOS {
     );
     this.aiOrchestrator = new AIOrchestrator(this.eventBus);
     this.memoryGraph = new MemoryGraph(this.eventBus);
+    this.storage = new PersistentStorage({}, this.eventBus);
+    this.plugins = new PluginSystem(this.eventBus);
+
+    // Phase 2: Initialize AI integration
+    this.aiIntegration = new AIIntegration(this.eventBus);
+
+    // Phase 2: Initialize voice input/output
+    this.voiceInput = new VoiceInput(this.eventBus);
+    this.voiceOutput = new VoiceOutput(this.eventBus);
+
+    // Phase 2: Initialize WebGPU renderer
+    const container = document.getElementById('canvas-container')!;
+    this.renderer = new WebGPURenderer(container);
 
     this.setupUI();
     this.setupEventListeners();

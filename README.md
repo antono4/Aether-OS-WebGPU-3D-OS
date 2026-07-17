@@ -658,19 +658,171 @@ npm run preview
 - [x] Memory Graph (simulated)
 - [x] Command Bar interface
 
-### Phase 2 (Planned)
-- [ ] Real AI integration (Claude/GPT API)
-- [ ] Persistent storage (IndexedDB)
-- [ ] WebGPU renderer
+### Phase 2 (In Progress) 🚧
+- [x] Real AI integration (Claude/GPT API)
+- [x] Persistent storage (IndexedDB)
+- [x] WebGPU renderer
+- [x] Voice input
 - [ ] Multi-user collaboration
-- [ ] Voice input
 
-### Phase 3 (Future)
+### Phase 3 (Future) 📋
 - [ ] Desktop app (Tauri/Electron)
 - [ ] Mobile support
-- [ ] Plugin system
-- [ ] Custom shader playground
+- [x] Plugin system
+- [x] Custom shader playground
 - [ ] AI agent delegation
+
+---
+
+## 🧪 Phase 2 & 3 Features
+
+### 1. Real AI Integration (`src/intelligence/AIIntegration.ts`)
+
+Mendukung berbagai AI provider:
+
+```typescript
+import { AIIntegration } from './intelligence/AIIntegration';
+
+const ai = new AIIntegration(eventBus, {
+  provider: 'claude', // 'claude' | 'openai' | 'gemini' | 'local'
+  apiKey: process.env.VITE_AI_API_KEY,
+  model: 'claude-3-sonnet-20240229'
+});
+
+// Chat dengan AI
+const response = await ai.chat("Show me a sales chart");
+console.log(response.content);
+```
+
+### 2. Persistent Storage (`src/storage/PersistentStorage.ts`)
+
+IndexedDB wrapper untuk offline-first storage:
+
+```typescript
+import { storage } from './storage/PersistentStorage';
+
+// Simpan data
+await storage.put('nodes', { id: 'node-1', type: 'task', content: '...' });
+
+// Ambil data
+const node = await storage.get('nodes', 'node-1');
+
+// Query berdasarkan index
+const tasks = await storage.query('nodes', 'type', 'task');
+```
+
+### 3. WebGPU Renderer (`src/renderer/WebGPURenderer.ts`)
+
+Adaptive rendering dengan WebGPU fallback ke WebGL2:
+
+```typescript
+import { WebGPURenderer, AdaptiveQualityManager } from './renderer/WebGPURenderer';
+
+const renderer = new WebGPURenderer(container);
+
+// Adaptive quality
+const qualityManager = new AdaptiveQualityManager();
+renderer.onFpsUpdate((stats) => {
+  const quality = qualityManager.adjustQuality(stats.fps);
+  renderer.getRenderer()?.setPixelRatio(qualityManager.getPixelRatio());
+});
+
+// Screenshot
+const imageData = renderer.screenshot('png');
+```
+
+### 4. Voice Input (`src/voice/VoiceInput.ts`)
+
+Speech recognition dan text-to-speech:
+
+```typescript
+import { VoiceInput, VoiceOutput } from './voice/VoiceInput';
+
+const voice = new VoiceInput(eventBus, { lang: 'en-US' });
+
+// Mulai voice recognition
+voice.start();
+
+// Callback untuk hasil speech
+voice.onTranscript((result) => {
+  console.log('Heard:', result.transcript);
+});
+
+// Text-to-speech
+const speaker = new VoiceOutput(eventBus);
+speaker.speak('Hello from Aether OS!');
+```
+
+### 5. Multi-User Collaboration (`src/collaboration/Collaboration.ts`)
+
+Real-time sync antar pengguna:
+
+```typescript
+import { CollaborationManager } from './collaboration/Collaboration';
+
+const collab = new CollaborationManager(eventBus, {
+  roomId: 'my-session',
+  userName: 'Alice'
+});
+
+// Hubungkan ke server
+await collab.connect();
+
+// Broadcast cursor position
+collab.sendCursorPosition(x, y, z);
+
+// Broadcast node update
+collab.sendNodeUpdate({ id: 'node-1', position: newPos });
+
+// Chat
+collab.sendChatMessage('Hello team!');
+```
+
+### 6. Plugin System (`src/plugins/PluginSystem.ts`)
+
+Extensible architecture:
+
+```typescript
+import { PluginSystem } from './plugins/PluginSystem';
+
+const plugins = new PluginSystem(eventBus);
+
+// Register plugin
+await plugins.register({
+  manifest: {
+    id: 'my-plugin',
+    name: 'My Plugin',
+    version: '1.0.0',
+    type: 'feature'
+  },
+  instance: {
+    onLoad: () => console.log('Plugin loaded'),
+    onEnable: () => console.log('Plugin enabled')
+  }
+});
+
+// Enable plugin
+await plugins.enable('my-plugin');
+```
+
+### 7. Shader Playground (`src/shader/ShaderPlayground.ts`)
+
+GLSL editor dengan live preview:
+
+```typescript
+import { ShaderPlayground } from './shader/ShaderPlayground';
+
+const playground = new ShaderPlayground(container);
+
+// Compile shaders
+playground.compile();
+
+// Load preset
+playground.loadPreset('glassmorphism');
+
+// Get shader code
+const { vertex, fragment } = playground.getShaders();
+```
 
 ---
 
