@@ -1,6 +1,6 @@
 # 🌀 Aether OS - Spatial Operating System
 
-![Aether OS Banner](docs/banner.svg)
+![Aether OS Banner](https://raw.githubusercontent.com/antono4/Aether-OS-WebGPU-3D-OS/master/docs/banner.svg)
 
 > **Next-Generation Spatial Operating System** dengan paradigma Zero-App Architecture dan Associative Memory Database. Mendobrak batasan antarmuka WIMP (Windows, Icons, Menus, Pointer) tradisional.
 
