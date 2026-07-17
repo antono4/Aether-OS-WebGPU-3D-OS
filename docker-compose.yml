@@ -1,0 +1,95 @@
+version: '3.8'
+
+services:
+  # Aether OS Web App
+  aether-os:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    environment:
+      - NODE_ENV=production
+      - ENABLE_ANALYTICS=false
+      - ENABLE_TELEMETRY=false
+    restart: unless-stopped
+    networks:
+      - aether-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Collaboration WebSocket Server (Optional)
+  collab-server:
+    build:
+      context: ./server/collab
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - CORS_ORIGINS=http://localhost:5173
+    restart: unless-stopped
+    networks:
+      - aether-network
+    depends_on:
+      - redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Redis for collaboration sessions
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    networks:
+      - aether-network
+    command: redis-server --appendonly yes
+
+  # Ollama for local LLM (Optional)
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    restart: unless-stopped
+    networks:
+      - aether-network
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  # Sync Server (Optional)
+  sync-server:
+    build:
+      context: ./server/sync
+    ports:
+      - "3000:3000"
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=change-in-production
+    restart: unless-stopped
+    networks:
+      - aether-network
+    depends_on:
+      - redis
+
+networks:
+  aether-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+  ollama-data:

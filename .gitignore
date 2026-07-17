@@ -1,32 +1,97 @@
+# ===========================================
+# Aether OS - Git Ignore
+# ===========================================
+
 # Dependencies
 node_modules/
+.pnp
+.pnp.js
 
-# Build output
+# Build outputs
 dist/
 build/
+out/
 
-# Environment
-.env
-.env.local
-.env.*.local
+# Development
+.cache/
+.tmp/
+.hint/
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-
-# OS
+*~
 .DS_Store
-Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.development
+.env.production
+.env.*.local
 
 # Logs
+logs/
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Cache
-.cache/
-.parcel-cache/
+# Testing
+coverage/
+.nyc_output/
+
+# Tauri (Desktop)
+src-tauri/target/
+src-tauri/Cargo.lock
+
+# Rust
+**/*.rs.bk
+Cargo.lock
+
+# WebAssembly
+.wasm-pack/
+pkg/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Backup files
+*.backup
+*.bak
+
+# Credentials and secrets
+*.pem
+*.key
+*.crt
+credentials.json
+service-account.json
+
+# Project specific
+data/
+*.aether
+.aether/
+
+# Third-party builds
+third-party/
+
+# Memory files
+*.mem
+*.heap
+*.core
+
+# OS files
+Thumbs.db
 
 # Temporary files
 *.tmp
