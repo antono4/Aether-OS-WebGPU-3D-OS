@@ -1,2 +1,34 @@
-Last updated: 2026-09-05 00:39:48 WIB
-Last updated: 2026-09-05 01:16:36 WIB
+# aether-os-spatial-canvas
+
+
+
+## 📋 Overview
+
+This repository contains **81 files** and is built with the following technologies:
+
+Node.js, HTML, JavaScript, Docker
+
+## 🚀 Quick Start
+
+```bash
+npm install
+npm run dev
+npm run build
+```
+
+## ✨ Features
+
+- 🐳 Docker support
+- 🔧 Environment config included
+- 📝 Auto-generated documentation
+
+## 🛠️ Technologies
+
+Node.js, HTML, JavaScript, Docker
+
+## 📄 License
+
+MIT License
+
+---
+*Last updated: 2026-09-05 01:25:36 WIB*
